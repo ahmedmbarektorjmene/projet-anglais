@@ -615,3 +615,193 @@ body {
 .description strong {
     color: #ec4899;
 }
+
+/* ============================================
+   Pricing Page Styles
+   ============================================ */
+
+.price-hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 30px 0;
+}
+
+.price-tag {
+    display: flex;
+    align-items: flex-start;
+    animation: pulse-price 2s ease-in-out infinite;
+}
+
+@keyframes pulse-price {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+.price-currency {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #00d9ff;
+    margin-top: 10px;
+}
+
+.price-amount {
+    font-size: 8rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #00d9ff, #a855f7);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1;
+}
+
+.price-label {
+    font-size: 1.5rem !important;
+    font-weight: 600;
+    color: #00d9ff !important;
+    margin-top: 10px !important;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+
+.free-benefits {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin: 25px 0;
+    max-width: 450px;
+}
+
+.benefit-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px 25px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+.benefit-item:hover {
+    background: rgba(0, 217, 255, 0.1);
+    border-color: rgba(0, 217, 255, 0.3);
+    transform: translateX(10px);
+}
+
+.benefit-icon {
+    font-size: 1.3rem;
+}
+
+.benefit-item span:last-child {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.cost-note {
+    font-size: 1.1rem !important;
+    color: rgba(255, 255, 255, 0.6) !important;
+    margin-top: 20px !important;
+}
+
+.cost-note strong {
+    color: #00d9ff;
+}
+
+/* ============================================
+   Learning Options Section
+   ============================================ */
+
+.options-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+    margin: 25px 0;
+    max-width: 900px;
+    width: 100%;
+}
+
+@media (max-width: 768px) {
+    .options-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+.option-card {
+    padding: 25px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.option-card:hover {
+    background: rgba(255, 255, 255, 0.08);
+    transform: translateY(-5px);
+}
+
+.option-card.featured {
+    background: rgba(168, 85, 247, 0.1);
+    border-color: rgba(168, 85, 247, 0.4);
+}
+
+.featured-badge {
+    position: absolute;
+    top: -12px;
+    right: 20px;
+    padding: 6px 16px;
+    background: linear-gradient(135deg, #a855f7, #ec4899);
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.option-card h3 {
+    font-size: 1.3rem;
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+.cohort-date {
+    font-size: 0.9rem !important;
+    color: #a855f7 !important;
+    margin-bottom: 15px !important;
+    font-weight: 600;
+}
+
+.option-features {
+    list-style: none;
+    padding: 0;
+    margin: 15px 0 0;
+}
+
+.option-features li {
+    padding: 8px 0;
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.8);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    text-align: center;
+}
+
+.option-features li:last-child {
+    border-bottom: none;
+}
+
+.option-features li.pro {
+    color: #00d9ff;
+    font-weight: 500;
+}
+
+.option-features li.con {
+    color: rgba(255, 255, 255, 0.5);
+}

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Presentation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div class="presentation-container">
+        <!-- Decorative blurs -->
+        <div class="decoration one"></div>
+        <div class="decoration two"></div>
+
+        <!-- Slide Counter -->
+        <div class="slide-counter">
+            <span id="current-slide">1</span> / <span id="total-slides">5</span>
+        </div>
+
+        <!-- Slides -->
+        <div class="slides-wrapper" id="slides-wrapper">
+            <!-- Pages will be loaded here -->
+        </div>
+
+        <!-- Navigation Arrows -->
+        <button class="nav-arrow prev disabled" id="prev-btn" aria-label="Previous slide">
+            <svg viewBox="0 0 24 24">
+                <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+        </button>
+        <button class="nav-arrow next" id="next-btn" aria-label="Next slide">
+            <svg viewBox="0 0 24 24">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+        </button>
+
+        <!-- Progress Dots -->
+        <div class="progress-container" id="progress-dots"></div>
+
+        <!-- Keyboard Hint -->
+        <div class="keyboard-hint">
+            Use <kbd>←</kbd> <kbd>→</kbd> arrow keys to navigate
+        </div>
+    </div>
+
+    <script>
+        // Load pages dynamically
+        const pages = [
+            'pages/page1.html',
+            'pages/page2.html',
+            'pages/page3.html',
+            'pages/page4.html',
+            'pages/page5.html'
+        ];
+
+        async function loadPages() {
+            const wrapper = document.getElementById('slides-wrapper');
+
+            for (const page of pages) {
+                try {
+                    const response = await fetch(page);
+                    const html = await response.text();
+                    wrapper.innerHTML += html;
+                } catch (error) {
+                    console.error(`Failed to load ${page}:`, error);
+                }
+            }
+
+            // Initialize presentation after pages are loaded
+            new Presentation();
+        }
+
+        loadPages();
+    </script>
+    <script src="js/presentation.js"></script>
+</body>
+
+</html>

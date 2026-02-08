@@ -164,7 +164,7 @@ class Presentation {
     getAnimatableElements(slide) {
         // Get all elements we want to animate
         const textSelectors = 'h1, h2, h3, .subtitle, .tagline, .description, p';
-        const bubbleSelectors = '.intro-hero, .hero-image, .title-row, .highlights-grid, .highlight-card, .tech-stack, .tech-group, .creator-card, .creator-details, .detail-item, .options-container, .option-card, .price-hero, .free-benefits, .benefit-item, .callout-box, ul, li, img';
+        const bubbleSelectors = '.intro-hero, .hero-image, .title-row, .highlights-grid, .highlight-card, .tech-stack, .tech-group, .creator-card, .creator-details, .detail-item, .options-container, .option-card, .price-hero, .free-benefits, .benefit-item, .callout-box, .modules-grid, .module-card, ul, li, img';
         
         const allAnimatable = slide.querySelectorAll(`${textSelectors}, ${bubbleSelectors}`);
         
@@ -176,7 +176,7 @@ class Presentation {
             const isText = textSelectorList.some(sel => el.matches(sel.trim()));
             
             // Containers where text should NOT be typed separately (animate as part of bubble)
-            const noTypeInsideSelectors = '.creator-card, .detail-item, .highlight-card, .option-card, .benefit-item, .tech-group, li';
+            const noTypeInsideSelectors = '.creator-card, .detail-item, .highlight-card, .option-card, .benefit-item, .tech-group, .module-card, li';
             
             // Check if element is inside a container that should animate as a unit
             let parent = el.parentElement;

@@ -692,6 +692,58 @@ body {
 }
 
 /* ============================================
+   Modules Page Styles
+   ============================================ */
+
+.modules-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 15px;
+    max-width: min(1000px, 95vw);
+    width: 100%;
+    margin: 20px 0;
+    max-height: 70vh;
+    overflow-y: auto;
+    padding: 10px;
+}
+
+.module-card {
+    padding: 15px 18px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+.module-card:hover {
+    background: rgba(168, 85, 247, 0.15);
+    border-color: rgba(168, 85, 247, 0.4);
+    transform: translateY(-3px);
+}
+
+.module-card h3 {
+    font-size: 0.95rem;
+    color: #00d9ff;
+    margin-bottom: 8px;
+}
+
+.module-card p {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.5;
+    margin: 0;
+}
+
+.module-card.highlight {
+    background: linear-gradient(135deg, rgba(168, 85, 247, 0.2), rgba(236, 72, 153, 0.2));
+    border-color: rgba(168, 85, 247, 0.4);
+}
+
+.module-card.highlight h3 {
+    color: #ec4899;
+}
+
+/* ============================================
    Pricing Page Styles
    ============================================ */
 

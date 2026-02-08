@@ -14,6 +14,14 @@ class Presentation {
     }
 
     init() {
+        // Ensure only the first slide is active on initialization
+        this.slides.forEach((slide, i) => {
+            slide.classList.remove('active', 'prev');
+            if (i === 0) {
+                slide.classList.add('active');
+            }
+        });
+        
         // Update total slides count
         this.totalSlidesEl.textContent = this.totalSlides;
         

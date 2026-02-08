@@ -62,9 +62,9 @@ body {
 }
 
 .slide h1 {
-    font-size: 3.5rem;
+    font-size: clamp(1.8rem, 4vw, 3.5rem);
     font-weight: 700;
-    margin-bottom: 30px;
+    margin-bottom: clamp(15px, 3vh, 30px);
     background: linear-gradient(135deg, #00d9ff, #a855f7, #ec4899);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -86,17 +86,17 @@ body {
 }
 
 .slide h2 {
-    font-size: 2rem;
+    font-size: clamp(1.3rem, 3vw, 2rem);
     font-weight: 600;
-    margin-bottom: 20px;
+    margin-bottom: clamp(10px, 2vh, 20px);
     color: #a855f7;
 }
 
 .slide p {
-    font-size: 1.4rem;
+    font-size: clamp(0.9rem, 1.8vw, 1.4rem);
     font-weight: 300;
-    line-height: 1.8;
-    max-width: 800px;
+    line-height: 1.7;
+    max-width: min(800px, 90vw);
     text-align: center;
     color: rgba(255, 255, 255, 0.85);
 }
@@ -107,9 +107,9 @@ body {
 }
 
 .slide li {
-    font-size: 1.3rem;
-    padding: 15px 30px;
-    margin: 10px 0;
+    font-size: clamp(0.85rem, 1.5vw, 1.3rem);
+    padding: clamp(8px, 1.5vh, 15px) clamp(15px, 2vw, 30px);
+    margin: clamp(5px, 1vh, 10px) 0;
     background: rgba(255, 255, 255, 0.05);
     border-radius: 12px;
     border-left: 4px solid #a855f7;
@@ -273,10 +273,10 @@ body {
 }
 
 .hero-image {
-    max-width: 600px;
+    max-width: min(600px, 80vw);
     width: 100%;
     height: auto;
-    border-radius: 16px;
+    border-radius: clamp(8px, 2vw, 16px);
     box-shadow: 0 20px 60px rgba(168, 85, 247, 0.3),
         0 0 100px rgba(0, 217, 255, 0.1);
     transition: transform 0.4s ease, box-shadow 0.4s ease;
@@ -301,17 +301,17 @@ body {
 }
 
 .subtitle {
-    font-size: 1.6rem !important;
+    font-size: clamp(1rem, 2vw, 1.6rem) !important;
     font-weight: 400 !important;
     color: rgba(255, 255, 255, 0.7) !important;
-    margin-bottom: 15px !important;
+    margin-bottom: clamp(8px, 1.5vh, 15px) !important;
     letter-spacing: 1px;
 }
 
 .tagline {
-    font-size: 1.2rem !important;
-    max-width: 700px;
-    margin-bottom: 30px !important;
+    font-size: clamp(0.85rem, 1.5vw, 1.2rem) !important;
+    max-width: min(700px, 90vw);
+    margin-bottom: clamp(15px, 3vh, 30px) !important;
     color: rgba(255, 255, 255, 0.8) !important;
 }
 
@@ -323,10 +323,10 @@ body {
 /* Highlights Grid */
 .highlights-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
-    margin: 20px 0 30px;
-    max-width: 900px;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: clamp(10px, 2vw, 20px);
+    margin: clamp(10px, 2vh, 20px) 0 clamp(15px, 3vh, 30px);
+    max-width: min(900px, 95vw);
     width: 100%;
 }
 
@@ -345,11 +345,11 @@ body {
 .highlight-card {
     display: flex;
     align-items: center;
-    gap: 15px;
-    padding: 20px;
+    gap: clamp(8px, 1.5vw, 15px);
+    padding: clamp(12px, 2vw, 20px);
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 16px;
+    border-radius: clamp(10px, 2vw, 16px);
     backdrop-filter: blur(20px);
     transition: all 0.3s ease;
     cursor: default;
@@ -363,14 +363,14 @@ body {
 }
 
 .card-icon {
-    font-size: 2rem;
-    width: 50px;
-    height: 50px;
+    font-size: clamp(1.3rem, 2.5vw, 2rem);
+    width: clamp(35px, 5vw, 50px);
+    height: clamp(35px, 5vw, 50px);
     display: flex;
     align-items: center;
     justify-content: center;
     background: linear-gradient(135deg, rgba(168, 85, 247, 0.3), rgba(236, 72, 153, 0.3));
-    border-radius: 12px;
+    border-radius: clamp(8px, 1.5vw, 12px);
     flex-shrink: 0;
 }
 
@@ -381,13 +381,13 @@ body {
 }
 
 .card-title {
-    font-size: 1rem;
+    font-size: clamp(0.8rem, 1.2vw, 1rem);
     font-weight: 600;
     color: #fff;
 }
 
 .card-desc {
-    font-size: 0.85rem;
+    font-size: clamp(0.7rem, 1vw, 0.85rem);
     color: rgba(255, 255, 255, 0.5);
 }
 
@@ -624,7 +624,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 30px 0;
+    margin: clamp(15px, 3vh, 30px) 0;
 }
 
 .price-tag {
@@ -646,14 +646,14 @@ body {
 }
 
 .price-currency {
-    font-size: 2.5rem;
+    font-size: clamp(1.5rem, 3vw, 2.5rem);
     font-weight: 700;
     color: #00d9ff;
-    margin-top: 10px;
+    margin-top: clamp(5px, 1vh, 10px);
 }
 
 .price-amount {
-    font-size: 8rem;
+    font-size: clamp(4rem, 10vw, 8rem);
     font-weight: 800;
     background: linear-gradient(135deg, #00d9ff, #a855f7);
     -webkit-background-clip: text;
@@ -663,10 +663,10 @@ body {
 }
 
 .price-label {
-    font-size: 1.5rem !important;
+    font-size: clamp(1rem, 2vw, 1.5rem) !important;
     font-weight: 600;
     color: #00d9ff !important;
-    margin-top: 10px !important;
+    margin-top: clamp(5px, 1vh, 10px) !important;
     text-transform: uppercase;
     letter-spacing: 3px;
 }
@@ -721,10 +721,10 @@ body {
 
 .options-container {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 25px;
-    margin: 25px 0;
-    max-width: 900px;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: clamp(15px, 2.5vw, 25px);
+    margin: clamp(15px, 2.5vh, 25px) 0;
+    max-width: min(900px, 95vw);
     width: 100%;
 }
 
@@ -735,10 +735,10 @@ body {
 }
 
 .option-card {
-    padding: 25px;
+    padding: clamp(15px, 2.5vw, 25px);
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 16px;
+    border-radius: clamp(10px, 2vw, 16px);
     position: relative;
     transition: all 0.3s ease;
 }
@@ -804,4 +804,221 @@ body {
 
 .option-features li.con {
     color: rgba(255, 255, 255, 0.5);
+}
+
+/* ============================================
+   Responsive Styles for Desktop Screens
+   ============================================ */
+
+/* Large Desktop (1400px+) */
+@media (min-width: 1400px) {
+    .slide h1 {
+        font-size: 4rem;
+    }
+
+    .slide h2 {
+        font-size: 2.5rem;
+    }
+
+    .hero-image {
+        max-width: 700px;
+    }
+
+    .highlights-grid {
+        max-width: 1000px;
+    }
+
+    .price-amount {
+        font-size: 10rem;
+    }
+}
+
+/* Medium Desktop (1200px - 1399px) */
+@media (max-width: 1399px) and (min-width: 1200px) {
+    .slide {
+        padding: 50px;
+    }
+
+    .slide h1 {
+        font-size: 3rem;
+    }
+
+    .hero-image {
+        max-width: 550px;
+    }
+}
+
+/* Small Desktop / Large Tablet (992px - 1199px) */
+@media (max-width: 1199px) and (min-width: 992px) {
+    .slide {
+        padding: 40px;
+    }
+
+    .slide h1 {
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+    }
+
+    .slide h2 {
+        font-size: 1.8rem;
+    }
+
+    .slide p {
+        font-size: 1.2rem;
+    }
+
+    .hero-image {
+        max-width: 450px;
+    }
+
+    .title-emoji {
+        font-size: 2.5rem;
+    }
+
+    .highlights-grid {
+        gap: 15px;
+    }
+
+    .highlight-card {
+        padding: 15px;
+    }
+
+    .price-amount {
+        font-size: 6rem;
+    }
+
+    .nav-arrow {
+        width: 50px;
+        height: 50px;
+    }
+}
+
+/* Smaller Desktop (768px - 991px) */
+@media (max-width: 991px) and (min-width: 768px) {
+    .slide {
+        padding: 30px;
+    }
+
+    .slide h1 {
+        font-size: 2rem;
+        margin-bottom: 15px;
+    }
+
+    .slide h2 {
+        font-size: 1.5rem;
+        margin-bottom: 15px;
+    }
+
+    .slide p {
+        font-size: 1.1rem;
+        line-height: 1.6;
+    }
+
+    .hero-image {
+        max-width: 400px;
+    }
+
+    .title-row {
+        gap: 10px;
+    }
+
+    .title-emoji {
+        font-size: 2rem;
+    }
+
+    .highlights-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+
+    .tech-stack {
+        gap: 15px;
+    }
+
+    .tech-badge {
+        padding: 6px 12px;
+        font-size: 0.8rem;
+    }
+
+    .price-amount {
+        font-size: 5rem;
+    }
+
+    .price-label {
+        font-size: 1.2rem !important;
+    }
+
+    .options-container {
+        gap: 20px;
+    }
+
+    .option-card {
+        padding: 20px;
+    }
+
+    .creator-card {
+        padding: 20px 30px;
+    }
+
+    .creator-details {
+        gap: 15px;
+    }
+
+    .nav-arrow {
+        width: 45px;
+        height: 45px;
+    }
+
+    .nav-arrow.prev {
+        left: 15px;
+    }
+
+    .nav-arrow.next {
+        right: 15px;
+    }
+
+    .slide-counter {
+        top: 15px;
+        right: 20px;
+        font-size: 1rem;
+    }
+
+    .progress-container {
+        bottom: 25px;
+        gap: 8px;
+    }
+
+    .progress-dot {
+        width: 10px;
+        height: 10px;
+    }
+}
+
+/* Ensure slides don't overflow on smaller screens */
+@media (max-height: 700px) {
+    .slide {
+        padding: 25px 40px;
+        justify-content: flex-start;
+        padding-top: 60px;
+    }
+
+    .intro-hero {
+        margin-bottom: 15px;
+    }
+
+    .hero-image {
+        max-width: 350px;
+    }
+
+    .price-amount {
+        font-size: 5rem;
+    }
+
+    .price-hero {
+        margin: 15px 0;
+    }
+
+    .options-container {
+        margin: 15px 0;
+    }
 }

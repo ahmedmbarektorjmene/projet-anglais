@@ -404,3 +404,19 @@ body {
     background-clip: text;
     font-weight: 600;
 }
+
+/* Title with emoji fix */
+.title-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+.title-row h1 {
+    margin-bottom: 0;
+}
+
+.title-emoji {
+    font-size: 3.5rem;
+}

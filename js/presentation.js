@@ -10,6 +10,7 @@ class Presentation {
         this.currentSlideEl = document.getElementById('current-slide');
         this.totalSlidesEl = document.getElementById('total-slides');
         
+        this.typingTimeouts = [];
         this.init();
     }
 
@@ -53,6 +54,9 @@ class Presentation {
         
         // Initial state
         this.updateUI();
+        
+        // Trigger initial animation
+        this.animateCurrentSlide();
     }
 
     createProgressDots() {
@@ -82,6 +86,7 @@ class Presentation {
         });
         
         this.updateUI();
+        this.animateCurrentSlide();
     }
 
     prevSlide() {
@@ -122,6 +127,140 @@ class Presentation {
         dots.forEach((dot, i) => {
             dot.classList.toggle('active', i === this.currentIndex);
         });
+    }
+
+    animateCurrentSlide() {
+        // Clear any ongoing animations
+        this.typingTimeouts.forEach(timeout => clearTimeout(timeout));
+        this.typingTimeouts = [];
+
+        const currentSlide = this.slides[this.currentIndex];
+        
+        // Get ALL direct children and their descendants in DOM order
+        const allElements = this.getAnimatableElements(currentSlide);
+        
+        // Prepare all elements (hide text, prepare bubble elements)
+        allElements.forEach(item => {
+            if (item.type === 'text') {
+                if (!item.el.dataset.originalText) {
+                    item.el.dataset.originalText = item.el.textContent;
+                }
+                // Store original height before clearing to prevent layout shift
+                const originalHeight = item.el.offsetHeight;
+                item.el.style.minHeight = originalHeight + 'px';
+                item.el.textContent = '';
+                item.el.style.visibility = 'hidden'; // Hide completely until typing starts
+            } else {
+                // Hide bubble elements initially
+                item.el.style.opacity = '0';
+                item.el.classList.remove('bubble-up');
+            }
+        });
+
+        // Animate all elements sequentially
+        this.animateSequentially(allElements, 0);
+    }
+
+    getAnimatableElements(slide) {
+        // Get all elements we want to animate
+        const textSelectors = 'h1, h2, h3, .subtitle, .tagline, .description, p';
+        const bubbleSelectors = '.intro-hero, .hero-image, .title-row, .highlights-grid, .highlight-card, .tech-stack, .tech-group, .creator-card, .creator-details, .detail-item, .options-container, .option-card, .price-hero, .free-benefits, .benefit-item, .callout-box, .modules-grid, .module-card, ul, li, img';
+        
+        const allAnimatable = slide.querySelectorAll(`${textSelectors}, ${bubbleSelectors}`);
+        
+        // Convert to array with type info, sorted by DOM position (natural order)
+        const elements = [];
+        const textSelectorList = textSelectors.split(', ');
+        
+        allAnimatable.forEach(el => {
+            const isText = textSelectorList.some(sel => el.matches(sel.trim()));
+            
+            // Containers where text should NOT be typed separately (animate as part of bubble)
+            const noTypeInsideSelectors = '.creator-card, .detail-item, .highlight-card, .option-card, .benefit-item, .tech-group, .module-card, li';
+            
+            // Check if element is inside a container that should animate as a unit
+            let parent = el.parentElement;
+            let isInsideNoTypeContainer = false;
+            let isInsideBubbleContainer = false;
+            
+            while (parent && parent !== slide) {
+                if (parent.matches && parent.matches(noTypeInsideSelectors)) {
+                    isInsideNoTypeContainer = true;
+                }
+                if (parent.matches && parent.matches(bubbleSelectors)) {
+                    isInsideBubbleContainer = true;
+                }
+                parent = parent.parentElement;
+            }
+            
+            // Skip text elements inside no-type containers (let them animate with their parent bubble)
+            if (isText && isInsideNoTypeContainer) {
+                return;
+            }
+            
+            // Skip bubble elements inside other bubbles (avoid duplicates)
+            if (!isText && isInsideBubbleContainer) {
+                return;
+            }
+            
+            elements.push({
+                el: el,
+                type: isText ? 'text' : 'bubble'
+            });
+        });
+        
+        return elements;
+    }
+
+    animateSequentially(elements, index) {
+        if (index >= elements.length) return;
+        
+        const item = elements[index];
+        
+        if (item.type === 'text') {
+            this.typeElement(item.el, () => {
+                this.animateSequentially(elements, index + 1);
+            });
+        } else {
+            this.bubbleElement(item.el, () => {
+                this.animateSequentially(elements, index + 1);
+            });
+        }
+    }
+
+    typeElement(el, onComplete) {
+        const text = el.dataset.originalText || '';
+        el.textContent = '';
+        el.style.visibility = 'visible'; // Make visible when typing starts
+        el.classList.add('typing-cursor');
+        
+        let charIndex = 0;
+        const speed = 15; // ms per character
+        
+        const typeNext = () => {
+            if (charIndex < text.length) {
+                el.textContent += text.charAt(charIndex);
+                charIndex++;
+                const timeout = setTimeout(typeNext, speed);
+                this.typingTimeouts.push(timeout);
+            } else {
+                el.classList.remove('typing-cursor');
+                // Small pause then continue
+                const pauseTimeout = setTimeout(onComplete, 50);
+                this.typingTimeouts.push(pauseTimeout);
+            }
+        };
+        
+        typeNext();
+    }
+
+    bubbleElement(el, onComplete) {
+        el.style.opacity = '';
+        el.classList.add('bubble-up');
+        
+        // Wait for animation to complete (600ms) then continue
+        const timeout = setTimeout(onComplete, 300);
+        this.typingTimeouts.push(timeout);
     }
 }
 
